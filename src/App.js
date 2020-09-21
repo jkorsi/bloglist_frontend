@@ -25,13 +25,13 @@ const App = () =>
     async function getBlogs()
     {
       const blogs = await getAll()
-      setBlogs(blogs.sort(compareNumbers))
+      setBlogs(blogs.sort(compareLikes))
     }
     console.log('Use effect!')
     getBlogs()
   }, [])
 
-  function compareNumbers(a, b)
+  function compareLikes(a, b)
   {
     //Sort descending
     return b.likes - a.likes
@@ -39,14 +39,13 @@ const App = () =>
 
   useEffect(() =>
   {
-    console.log('Use effect')
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
-    console.log('User: ', loggedUserJSON)
     if (loggedUserJSON)
     {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       setToken(user.token)
+
     }
   }, [])
 
@@ -59,13 +58,13 @@ const App = () =>
         username, password
       })
 
-      console.log('Setting to local storage')
       window.localStorage.setItem(
         'loggedInUser', JSON.stringify(user)
       )
 
       setUser(user)
       setToken(user.token)
+
       setUsername('')
       setPassword('')
 
@@ -118,10 +117,10 @@ const App = () =>
     setAuthor('')
     setBlogurl('')
 
-    setBlogs(blogs.concat(blogObject).sort(compareNumbers))
+    setBlogs(blogs.concat(blogObject).sort(compareLikes))
     setSuccess(true)
 
-    blogs.sort(compareNumbers)
+    blogs.sort(compareLikes)
 
     throwMessage(`New blog added. Blog: ${blogObject.title}, Author: ${blogObject.author}`)
   }
@@ -139,8 +138,7 @@ const App = () =>
 
   function refresh()
   {
-    console.log('refreshing..')
-    setBlogs(blogs.sort(compareNumbers))
+    setBlogs(blogs.sort(compareLikes))
   }
   const addBlogForm = () =>
   {
@@ -205,7 +203,7 @@ const App = () =>
   }
   return (
     <div style={{whiteSpace: 'pre-wrap'}}>
-      <div>
+      <div id='blogs'>
         <h2>Blogs</h2>
         <Notification
           message={errorMessage}

@@ -8,7 +8,7 @@ test('blog is rendered only partly by default', () =>
 {
 
   const user = {name: 'x'}
-  function refresh(x){return}
+  function refresh(x) {return }
 
   const blog = {
     author: 'Blog Tester',
@@ -93,7 +93,6 @@ test('like button can be clicked twice', () =>
 {
 
   const user = {name: 'x'}
-  //function refresh(x) {return}
   const mockHandler = jest.fn()
 
   const blog = {
@@ -114,7 +113,6 @@ test('like button can be clicked twice', () =>
       user={user}
       id={blog.id}
       refresh={mockHandler}
-      //handlelike={mockHandler}
     />
   )
 
@@ -123,7 +121,6 @@ test('like button can be clicked twice', () =>
   const likeButton = component.getByText('Like')
   fireEvent.click(likeButton)
   fireEvent.click(likeButton)
-  console.log('Mockhandler', mockHandler.mock.calls.length)
   expect(mockHandler.mock.calls).toHaveLength(2)
 
 })

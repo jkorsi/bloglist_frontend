@@ -29,7 +29,6 @@ const Blog = ({
   {
     refresh()
     event.preventDefault()
-    console.log('Likes before', likeState)
     const newLikes = likeState + 1
     const newBlog = {
       user: user.div,
@@ -40,9 +39,7 @@ const Blog = ({
       id: id
     }
     await put(newBlog)
-    //likes = likes + 1
     setLikes(newLikes)
-    console.log('Likes after', newBlog.likes)
   }
 
   const handleDelete = async (event) =>
@@ -70,7 +67,7 @@ const Blog = ({
   if (!infoView)
   {
     return (
-      <div style={blogStyle} className = 'blog'>
+      <div style={blogStyle} className='blog' id='blog'>
         <div onClick={() => setInfoView(!infoView)}>
           Blog: {title}, Author: {author} {}
           <button onClick={() => setInfoView(!infoView)}>View</button>
@@ -83,7 +80,7 @@ const Blog = ({
     return ('')
   }
   return (
-    <div style={blogStyle} className='blog'>
+    <div style={blogStyle} className='blog' id='blog'>
       <div onClick={() => setInfoView(!infoView)}>
         Blog: {title}, Author: {author} {}
         <button onClick={() => setInfoView(!infoView)}>View</button>
@@ -98,7 +95,7 @@ const Blog = ({
       <div>
         User: {user.name}
       </div >
-      <button type='button' onClick={handleDelete} style={{color: 'red'}}>Delete</button>
+      <button type='button' onClick={handleDelete} style={{color: 'red'}} id='delete'>Delete</button>
     </div>
   )
 }

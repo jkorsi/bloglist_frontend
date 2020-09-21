@@ -23,7 +23,6 @@ test('BlogAdd calls handleAddBlog with correct content', () =>
   )
 
   const title = component.container.querySelector('#title')
-  console.log('title', title)
   const author = component.container.querySelector('#author')
   const blogurl = component.container.querySelector('#blogurl')
   const form = component.container.querySelector('#form')
